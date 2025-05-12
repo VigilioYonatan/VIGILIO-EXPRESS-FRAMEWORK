@@ -9,13 +9,14 @@
         "serve": "bun --watch src/main.ts ",
         "build": "tsc && bun dev build ",
         "start": "NODE_ENV=production bun dist/main.js",
-        "test": "vitest",
         "biome:format:server": " biome format  ./src --write",
         "biome:check:server": "biome check ./src",
         "biome:format:client": "biome format  ./resources/ts --write",
         "biome:check:client": "biome check ./resources/ts",
         "biome:format": "bun biome:format:server && bun biome:format:client",
-        "biome:check": "bun biome:check:server && bun biome:check:client"
+        "biome:check": "bun biome:check:server && bun biome:check:client",
+        "test": "NODE_ENV=test bun test ./src/**/*.test.ts",
+        "test:watch": "NODE_ENV=test bun test  --watch ./src/**/*.test.ts"
     },
     "keywords": [
         "@vigilio/express",
@@ -28,6 +29,7 @@
         "@faker-js/faker": "^9.7.0",
         "@hookform/resolvers": "5.0.1",
         "@preact/signals": "2.0.4",
+        "@types/supertest": "^6.0.3",
         "@vigilio/express-core": "1.9.6-cear",
         "@vigilio/numeros-a-letras": "^0.0.7",
         "@vigilio/preact-fetching": "^2.1.2",
@@ -77,12 +79,12 @@
         "autoprefixer": "^10.4.21",
         "postcss": "^8.5.3",
         "rimraf": "^6.0.1",
+        "supertest": "^7.1.0",
         "tailwindcss": "^3.4.17",
         "tailwindcss-all": "^0.0.2",
         "typescript": "^5.8.3",
         "vite": "^6.3.4",
         "vite-plugin-live-reload": "^3.0.4",
-        "vite-plugin-pwa": "^1.0.0",
-        "vitest": "^3.1.2"
+        "vite-plugin-pwa": "^1.0.0"
     }
 }

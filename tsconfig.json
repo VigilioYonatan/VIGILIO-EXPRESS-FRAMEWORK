@@ -33,5 +33,5 @@
             "react-dom": ["./node_modules/preact/compat/"]
         }
     },
-    "include": ["src", "vite.config.ts", "app/vite-env.d.ts"]
+    "include": ["src", "vite.config.ts", "app/vite-env.d.ts"],
 }

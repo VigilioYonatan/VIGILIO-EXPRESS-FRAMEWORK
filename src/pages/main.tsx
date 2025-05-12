@@ -6,14 +6,14 @@ import { lazy } from "preact/compat";
 console.log("aca");
 
 for (const [path] of Object.entries(
-    import.meta.glob("./**/*.tsx", { eager: false })
+	import.meta.glob("./**/*.tsx", { eager: false }),
 )) {
-    console.log({ path });
+	console.log({ path });
 
-    render(
-        path,
-        lazy(() => import(/* @vite-ignore */ path))
-    );
+	render(
+		path,
+		lazy(() => import(/* @vite-ignore */ path)),
+	);
 }
 // render(
 //     "index",

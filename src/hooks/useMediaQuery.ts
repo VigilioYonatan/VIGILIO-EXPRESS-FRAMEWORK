@@ -53,12 +53,12 @@ export function useMedia(props: {
 	return laptop
 		? props.laptop
 		: tablet
-		  ? props.tablet
-		  : minitablet
-			  ? props.minitablet
-			  : mobile
-				  ? props.mobile
-				  : props.custom;
+			? props.tablet
+			: minitablet
+				? props.minitablet
+				: mobile
+					? props.mobile
+					: props.custom;
 }
 export function useMediaQueryNoReactive(query: string) {
 	return window.matchMedia(query).matches;
