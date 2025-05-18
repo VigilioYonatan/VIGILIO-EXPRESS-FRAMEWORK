@@ -23,17 +23,35 @@ export function render(
 	Component: FunctionComponent<any>,
 	fallback: null | JSX.Element | JSX.Element[] = null,
 ) {
-	console.log({ element });
+	function formatPath(routePath: string) {
+		let formatted = routePath.startsWith("/")
+			? routePath
+					.toLowerCase()
+					.replaceAll(".tsx", "")
+					.replaceAll(".jsx", "")
+					.slice(1)
+			: routePath.toLowerCase().replaceAll(".tsx", "").replaceAll(".jsx", "");
 
-	const name = nameTemplate(element);
+		if (formatted === "index") return "index";
+		const segments = formatted.split("/");
+		const processedSegments = segments.map((segment) => {
+			if (segment.startsWith(":")) {
+				return `[${segment.slice(1)}]`;
+			}
+			return segment;
+		});
+		formatted = processedSegments.join("-");
+		if (!formatted.endsWith("]") && !formatted.endsWith("index")) {
+			formatted += "-index";
+		}
+		return formatted;
+	}
+	const name = formatPath(element);
 	function escapeSelector(selector: string) {
 		return selector.replace(/\[/g, "\\[").replace(/\]/g, "\\]");
 	}
-
-	console.log({ name });
-
-	const elements = document.querySelectorAll(name);
-	console.log({ elements });
+	const nameNumber = !Number.isNaN(Number(name[0])) ? `page-${name}` : name;
+	const elements = document.querySelectorAll(escapeSelector(nameNumber));
 
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	let props: any = {};
@@ -52,27 +70,6 @@ export function render(
 			Provider(el, <Component {...props} />, fallback);
 		}
 	});
-}
-function nameTemplate(text: string) {
-	//!poner el nombrte asi blog-index blog-[index] sin
-	console.log({ text });
-
-	const key = text
-		.toLowerCase()
-		.replaceAll("/", "-")
-		.replaceAll(".tsx", "")
-		.replaceAll(".jsx", "")
-		.slice(2);
-	console.log({ key });
-
-	const name =
-		key === "index"
-			? "index"
-			: key.endsWith("/index")
-				? `${key.slice(1, -5)}`
-				: key;
-
-	return key.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
 export function reactComponent(

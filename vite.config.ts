@@ -10,7 +10,6 @@ export default defineConfig({
         // million.vite({ auto: true }),
         splitVendorChunkPlugin(),
         preact(),
-        // dynamicImportVars({}),
     ],
     root: "src",
     resolve: {

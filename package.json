@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "vite",
         "serve": "bun --watch src/main.ts ",
-        "build": "tsc && bun dev build ",
+        "build": "NODE_ENV=production tsc && bun dev build ",
         "start": "NODE_ENV=production bun dist/main.js",
         "biome:format:server": " biome format  ./src --write",
         "biome:check:server": "biome check ./src",
@@ -55,7 +55,6 @@
         "react-hook-form": "7.56.2",
         "sequelize": "^6.37.7",
         "sequelize-typescript": "^2.1.6",
-        "sharp": "^0.34.1",
         "socket.io": "^4.8.1",
         "web-push": "^3.6.7",
         "wouter-preact": "3.7.0"

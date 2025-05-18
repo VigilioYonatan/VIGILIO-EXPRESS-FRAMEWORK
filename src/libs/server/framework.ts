@@ -1,20 +1,17 @@
 import type { Request, Response } from "express";
 import { BASE_URL } from "~/config/server";
-import enviroments from "~/config/server/enviroments.config";
 
 interface HeaderProps {
 	title: string;
 	description?: string;
-	req: Request;
 }
-export async function Header({
+export function Header({
 	title,
 	description = "Centro de Arbitraje e Investigaciones Jurídicas. Especialistas en arbitraje con contrataciones públicas, arbitrajes de emergencias y Junta de Resolución de disputas.",
-	req,
 }: HeaderProps) {
 	const logo = `${BASE_URL()}/images/favicon.png`;
 
-	let seo = {
+	const seo = {
 		title,
 		description,
 		keywords:
@@ -46,10 +43,7 @@ export async function Header({
         <meta property="og:site_name" content="cearlatinoamericano">
         <meta name="fb:app_id" content="100064161184422">
         <link rel="apple-touch-icon" href="${logo}">
-        <link rel="manifest" href="${enviroments.VITE_URL}/manifest.json">
         <link rel="icon" href="${logo}" type="image/png">
-        <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/d766701a86e1e3d0fdcc8238/script.js" defer></script>
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="CmSaqX5XkoklQFi1cb5/6w" async></script>
         `;
 }
 
@@ -113,7 +107,6 @@ export function render(props: {
 		}
 		let pathJs = formatPath(req.route.path.toLowerCase());
 		pathJs = pathJs === "admin*-index" ? "app-index" : pathJs;
-
 		// pathJs = `pages-${pathJs}`;
 		return res.send(`
             <!DOCTYPE html>

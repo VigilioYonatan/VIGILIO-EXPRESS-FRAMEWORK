@@ -1,3 +1,3 @@
-import enviroments from "./enviroments.config";
+import enviroments from "./enviroments";
 
 export const BASE_URL = () => enviroments.VITE_URL;

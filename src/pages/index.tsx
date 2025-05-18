@@ -1,5 +1,5 @@
 function HomePage() {
-	return <div>indexws 2</div>;
+	return <div>index</div>;
 }
 
 export default HomePage;

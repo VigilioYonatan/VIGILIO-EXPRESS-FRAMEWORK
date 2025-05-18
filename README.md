@@ -39,3 +39,8 @@ This project was created using `bun init` in bun v1.1.42. [Bun](https://bun.sh) 
 | `toBeGreaterThanOrEqual(num)`   | Verifica si es mayor o igual que el número              | `expect(age).toBeGreaterThanOrEqual(18);` |
 | `toBeLessThanOrEqual(num)`      | Verifica si es menor o igual que el número              | `expect(temp).toBeLessThanOrEqual(30);` |
 | `resolves.toBe(...) / rejects.toThrow(...)` | Para promesas exitosas o fallidas     | `await expect(fetchData()).resolves.toBe('OK');`<br>`await expect(fetchData()).rejects.toThrow();` |
+
+
+<!--  -->
+PRODUCTION MODE
+change production .env

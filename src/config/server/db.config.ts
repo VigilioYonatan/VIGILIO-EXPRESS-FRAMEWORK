@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import enviroments from "./enviroments.config";
+import enviroments from "./enviroments";
 import { logger } from "@vigilio/express-core/helpers";
 
 const sequelize = new Sequelize({

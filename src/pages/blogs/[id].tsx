@@ -4,8 +4,6 @@ interface BlogsPageProps {
 	blog: Blog;
 }
 function BlogsPage({ blog }: BlogsPageProps) {
-	console.log(blog);
-
 	return (
 		<div>
 			<div class="flex justify-between items-center mb-3">

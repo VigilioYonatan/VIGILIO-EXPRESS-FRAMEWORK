@@ -3,7 +3,7 @@ import path from "node:path";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-import enviroments from "~/config/server/enviroments.config";
+import enviroments from "~/config/server/enviroments";
 import {
 	ERROR_MIDDLEWARE,
 	attachControllers,

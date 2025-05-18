@@ -2,24 +2,20 @@ import "vite/modulepreload-polyfill"; //https://vitejs.dev/guide/backend-integra
 import "../assets/index.css";
 import { render } from "~/libs/client/preact";
 import { lazy } from "preact/compat";
+import enviroments from "~/config/client/environments";
 
-console.log("aca");
-
-for (const [path] of Object.entries(
+for (const [path, importFn] of Object.entries(
 	import.meta.glob("./**/*.tsx", { eager: false }),
 )) {
-	console.log({ path });
-
 	render(
-		path,
-		lazy(() => import(/* @vite-ignore */ path)),
+		path.slice(1),
+		lazy(() =>
+			enviroments.VITE_ENV === "production"
+				? importFn().then((module) => ({
+						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						default: (module as any).default,
+					}))
+				: import(/*@vite-ignore*/ path),
+		),
 	);
 }
-// render(
-//     "index",
-//     lazy(() => import(/* @vite-ignore */ "./index"))
-// );
-// render(
-//     "blogs-index",
-//     lazy(() => import(/* @vite-ignore */ "./blogs/index"))
-// );
